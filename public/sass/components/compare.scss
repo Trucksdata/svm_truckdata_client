@@ -1,0 +1,57 @@
+.compareCard {
+    padding-top: 120px;
+}
+
+
+.text-custom-responsive {
+    white-space: wrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text if needed */
+    text-overflow: ellipsis; /* Show ellipsis (...) for overflow text */
+  }
+
+
+  .large-screen-only {
+    display: none; /* Hide the element by default */
+  
+    /* Use a media query to display the element on large screens */
+    @media (min-width: 768px) {
+      display: table-cell; /* Display the element on large screens */
+    }
+  }
+
+  .compare-vs{
+    position: fixed;
+    z-index: 100;
+    margin-left: -14px;
+  }
+
+
+  // .compare-card-link{
+  //   width: 2;
+  // }
+
+  .compareContents{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .compare_card_2{
+    margin-top: -10px;
+  }
+
+  .compare_padding {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    @media(min-width: 768px) {
+      padding-left: 15px; 
+    padding-right: 15px;
+    }
+
+    @media(min-width: 1200px) {
+      padding-left: 30px;
+      padding-right: 30px
+    }
+  }
