@@ -29,18 +29,20 @@ import ModelSlides from "../../components/models/ModelSlides";
 import Share from "../../components/share/Share";
 import Spinner from "../../components/loading/Spinner";
 
-const highlights = ["Loading Span (ft) / Loading Capacity (Cu.M)",
-"Gross Vehicle Weight (Kg)", "Variant Options", "Emission Standard", "Maximum Power", "Maximum Torque"
-]
-
-
+const highlights = [
+  "Loading Span (ft) / Loading Capacity (Cu.M)",
+  "Gross Vehicle Weight (Kg)",
+  "Variant Options",
+  "Emission Standard",
+  "Maximum Power",
+  "Maximum Torque",
+];
 
 const SinglePage = () => {
   const router = useRouter();
   const id = router.query.id;
 
-  const [expand, setExpand] = useState(false)
-
+  const [expand, setExpand] = useState(false);
 
   const similarNavigations = {
     prev: "similar-prev-navigation",
@@ -69,12 +71,16 @@ const SinglePage = () => {
     ?.filter((item) => item?.id !== Number(currentVehicleId));
 
   const keyspecs = vehicleData?.data?.vehicle_specs?.filter(
-    (item) => item?.specification?.is_key_feature && highlights.includes(item?.specification?.name)
+    (item) =>
+      item?.specification?.is_key_feature &&
+      highlights.includes(item?.specification?.name)
   );
-  const sortedKeySpecs =  keyspecs?.sort((a, b) => {
-    return highlights.indexOf(a.specification.name) - highlights.indexOf(b.specification.name);
+  const sortedKeySpecs = keyspecs?.sort((a, b) => {
+    return (
+      highlights.indexOf(a.specification.name) -
+      highlights.indexOf(b.specification.name)
+    );
   });
-
 
   const popularModels = allVehicles?.data?.data?.filter(
     (item) =>
@@ -90,7 +96,6 @@ const SinglePage = () => {
       </div>
     );
   }
-
 
   return (
     <>
@@ -205,7 +210,7 @@ const SinglePage = () => {
                         Starting From
                       </div>
                       <div className="text-24 lh-12 fw-600 mt-5">
-                        ₹ {vehicleData?.data["min_price"].split(".")[0]}{" "}
+                        ₹ {vehicleData?.data["min_price"]?.split(".")[0]}{" "}
                       </div>
                       <div className="text-14 text-light-1 mt-5">
                         Ex-showroom
@@ -284,9 +289,12 @@ const SinglePage = () => {
                 {!expand ? <u>Expand all</u> : <u>Collapse all</u>}
               </button>
             </div>
-            
+
             <div className="w-100">
-              <SpecificationTable vehicleData={vehicleData?.data}  expand={expand} />
+              <SpecificationTable
+                vehicleData={vehicleData?.data}
+                expand={expand}
+              />
             </div>
           </div>
         </div>
@@ -319,7 +327,7 @@ const SinglePage = () => {
                   className="accordion -simple row y-gap-20 js-accordion"
                   id="Faq1"
                 >
-                  <Faq faq={vehicleData?.data?.faq} />
+                  <Faq faq={vehicleData?.data?.faqs} />
                 </div>
               </div>
             </div>
