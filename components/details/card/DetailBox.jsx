@@ -20,7 +20,11 @@ const DetailBlock = ({ data, vehicleDetails }) => {
           } ls-2 lh-16`}
         >
           {data.key === "vehicle_type" ? (
-            <label>{vehicleDetails?.vehicle_type["status"]}</label>
+            <label>
+              {vehicleDetails?.vehicle_specs?.find(
+                (x) => x.specification.name == "Status"
+              )?.values[0]?.value || "-"}
+            </label>
           ) : null}
           {data.key === "manufacturer_id" ? (
             <label>{vehicleDetails?.manufacturer?.name}</label>
@@ -86,8 +90,7 @@ const DetailBox = ({ vehicleDetails }) => {
     setClick(!click);
   }
 
-
-  function handleClose () {
+  function handleClose() {
     setClick(false);
   }
 

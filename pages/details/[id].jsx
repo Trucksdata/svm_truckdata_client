@@ -311,7 +311,7 @@ const SinglePage = () => {
         </section>
       ) : null}
       {/* End Map */}
-      {vehicleData?.data?.faq?.length !== 0 && (
+      {vehicleData?.data?.faqs?.length !== 0 && (
         <section className="pt-40 mb-40">
           <div className="container ">
             <div className="row y-gap-20">
