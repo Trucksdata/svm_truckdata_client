@@ -143,7 +143,7 @@ function getTableData(id, specifications, compareData, isViewPage) {
             const existingItem = output.find(
               (outputItem) => outputItem.item === matchingItem.item
             );
-            
+
             if (existingItem) {
               if (!existingItem.option_one && index === 0) {
                 existingItem.option_one = spec?.values ?? "-";
@@ -155,9 +155,9 @@ function getTableData(id, specifications, compareData, isViewPage) {
             } else {
               const newItem = {
                 item: matchingItem.item,
-                ...(index === 0 && {option_one: spec?.values ?? '-'}),
-                ...(index === 1 && {option_two: spec?.values ?? '-'}),
-                ...(index === 2 && {option_three: spec?.values ?? '-'}),
+                ...(index === 0 && { option_one: spec?.values ?? "-" }),
+                ...(index === 1 && { option_two: spec?.values ?? "-" }),
+                ...(index === 2 && { option_three: spec?.values ?? "-" }),
               };
               output.push(newItem);
             }
@@ -198,7 +198,6 @@ function getTableData(id, specifications, compareData, isViewPage) {
       };
     }
   });
-
   const itemData = matchAndGenerateOutput(data, compareData);
   const dataSet = itemInFormat(itemData, isViewPage);
 
@@ -234,6 +233,23 @@ export const getSpecCompareData = (compareData, specCategory, isViewPage) => {
         };
       })),
   ];
+
+  let appItemIndex = specContent.findIndex((x) => x.title == "Applications");
+  if (appItemIndex > 0) {
+    let matchingItem = compareData[0].vehicle_specs?.find(
+      (spec) => spec?.specification?.name == "Applications"
+    );
+    if (matchingItem && matchingItem.values?.length > 0) {
+      let _tableData = [];
+      matchingItem.values?.map((x, index) => {
+        _tableData.push({
+          item: "Application " + `${index + 1}`,
+          option_one: x.value,
+        });
+      });
+      specContent[appItemIndex].tableData = _tableData;
+    }
+  }
 
   return specContent;
 };

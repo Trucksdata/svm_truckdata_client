@@ -9,34 +9,30 @@ const SpecTable = ({ hasVariant, tableData, vehicleSpecs, specId }) => {
     (item) => item?.specification?.specification_category_id === specId
   );
 
-
-
   function getCounts(data) {
-    return data.map(item => {
+    return data.map((item) => {
       if (item.option_five !== "-") {
         return 5;
-    }
-        if (item.option_four !== "-") {
-            return 4;
-        } else if (item.option_three !== "-") {
-            return 3;
-        } else if (item.option_two !== "-") {
-            return 2;
-        } else if (item.option_one !== "-") {
-            return 1;
-        } else {
-            return 0; // Return 0 if none of the options have a value
-        }
+      }
+      if (item.option_four !== "-") {
+        return 4;
+      } else if (item.option_three !== "-") {
+        return 3;
+      } else if (item.option_two !== "-") {
+        return 2;
+      } else if (item.option_one !== "-") {
+        return 1;
+      } else {
+        return 0; // Return 0 if none of the options have a value
+      }
     });
-}
+  }
 
+  const counts = getCounts(tableData);
+  const highest = getHighestDigit(counts);
+  const numArray = generateNumberArray(highest);
 
-
-  const counts = getCounts(tableData)
-  const highest = getHighestDigit(counts)
-  const numArray = generateNumberArray(highest)
-
-  const resultArray = numArray
+  const resultArray = numArray;
 
   return (
     <div className="overflow-scroll scroll-bar-1">
