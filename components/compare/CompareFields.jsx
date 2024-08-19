@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CompareModelInput } from "./CompareModelInputs";
 import ComparePlusButton from "./ComparePlusButton";
 import CompareInputSeperate from "./CompareSelectField";
+import CompareMfgSelectField from "./CompareMfgSelectField";
 import { useRouter } from "next/router";
 
 const CompareFields = ({ item, vehicle, setVehicle, isFetched }) => {
@@ -9,11 +10,13 @@ const CompareFields = ({ item, vehicle, setVehicle, isFetched }) => {
   const [searchValue, setSearchValue] = useState("");
   const [searchModelValue, setSearchModelValue] = useState("");
   const [selectedBodyType, setSelectedBodyType] = useState(null);
+  const [selectedMfg, setSelectedMfg] = useState(null);
   const [selectedModel, setSelectedModel] = useState(null);
 
   const router = useRouter();
   const { vehicle_one, vehicle_two, vehicle_three } = router?.query || {};
-  const hasIds = Boolean(vehicle_one) || Boolean(vehicle_two) || Boolean(vehicle_three)
+  const hasIds =
+    Boolean(vehicle_one) || Boolean(vehicle_two) || Boolean(vehicle_three);
 
   useEffect(() => {
     if (hasIds && isFetched) {
@@ -27,7 +30,6 @@ const CompareFields = ({ item, vehicle, setVehicle, isFetched }) => {
       );
     }
   }, [hasIds, isFetched, item.index, vehicle]);
-
 
   function handleClear() {
     setVehicle((prevVehicle) => {
@@ -68,6 +70,19 @@ const CompareFields = ({ item, vehicle, setVehicle, isFetched }) => {
         />
       </div>
       <div className="rounded-4 ">
+        <CompareMfgSelectField
+          index={item.index}
+          vehicle={vehicle}
+          setVehicle={setVehicle}
+          className="body-type"
+          setVehicleId={setVehicleId}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          selectedItem={selectedMfg}
+          setSelectedItem={setSelectedMfg}
+        />
+      </div>
+      <div className="rounded-4 ">
         <CompareModelInput
           index={item.index}
           vehicle={vehicle}
@@ -78,6 +93,7 @@ const CompareFields = ({ item, vehicle, setVehicle, isFetched }) => {
           setSearchModelValue={setSearchModelValue}
           selectedItem={selectedModel}
           setSelectedItem={setSelectedModel}
+          selectedMfg={selectedMfg}
         />
       </div>
     </div>

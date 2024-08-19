@@ -1,59 +1,27 @@
-import { useInView } from "react-intersection-observer";
-import { useGetVehiclesInfinite } from "../../services/vehicles/useGetVehicles";
-import getFlatData from "../../utils/getFlatData";
-import { useReloadOnPageScroll } from "../../hooks/useReloadOnPageScroll";
 import { useState } from "react";
+import useVehicleTypes from "../../services/useVehicleTypes";
 
-export const CompareModelInput = ({
+const CompareMfgSelectField = ({
   index,
-  vehicle,
-  setVehicle,
-  vehicleId,
-  setSearchModelValue,
-  searchModelValue,
-  setSelectedItem,
+  setVehicleId,
+  setSearchValue,
+  searchValue,
   selectedItem,
-  selectedMfg,
+  setSelectedItem,
 }) => {
-  const {
-    data: results,
-    fetchNextPage,
-    isFetchingNextPage,
-    hasNextPage,
-    isLoading,
-  } = useGetVehiclesInfinite({ manufacturer: selectedMfg?.id });
+  const { data: vehicleTypes } = useVehicleTypes();
+  const vehicleData = vehicleTypes?.data?.data;
 
-  const vehicles = getFlatData(results || []);
+  let manufacturers = [];
+  if (vehicleData && vehicleData.length > 0) {
+    manufacturers = vehicleData.find(
+      (x) => x.name == searchValue
+    )?.manufacturers;
+  }
 
-  const dataToMap = vehicles?.map((vehicleItem) => {
-    return {
-      ...vehicleItem,
-      name: vehicleItem.title,
-    };
-  });
-
-  const [ref, inView] = useInView();
-
-  useReloadOnPageScroll({
-    fetchNextPage,
-    inView,
-    isFetchingNextPage,
-    hasNextPage,
-  });
+  const dataToMap = manufacturers;
   const handleOptionClick = (item) => {
-    setSearchModelValue(item.name);
     setSelectedItem(item);
-    const updatedVehicle = vehicle.map((vehicleItem) =>
-      vehicleItem.index === index
-        ? {
-            ...vehicleItem,
-
-            vehicle: item,
-          }
-        : vehicleItem
-    );
-
-    setVehicle(updatedVehicle);
   };
 
   return (
@@ -63,15 +31,15 @@ export const CompareModelInput = ({
         data-bs-auto-close="true"
         data-bs-offset="0,22"
       >
-        <h4 className="text-15 fw-500 ls-2 lh-16">{"Select Vehicle"}</h4>
+        <h4 className="text-15 fw-500 ls-2 lh-16">{"Select Manufacturer"}</h4>
         <div className="text-15 text-light-1 ls-2 lh-16 d-flex  justify-content-between ">
           <div>
             <input
               autoComplete="off"
               type="search"
               className="js-search js-dd-focus"
-              value={searchModelValue}
-              onChange={(e) => setSearchModelValue(e.target.value)}
+              value={selectedItem?.name}
+              onChange={(e) => setSelectedItem(e.target.value)}
             />
           </div>
         </div>
@@ -100,10 +68,11 @@ export const CompareModelInput = ({
                 </div>
               </li>
             ))}
-            <div ref={ref}></div>
           </ul>
         </div>
       </div>
     </div>
   );
 };
+
+export default CompareMfgSelectField;
