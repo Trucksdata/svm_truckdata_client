@@ -234,19 +234,49 @@ export const getSpecCompareData = (compareData, specCategory, isViewPage) => {
       })),
   ];
 
-  let appItemIndex = specContent.findIndex((x) => x.title == "Applications");
-  if (appItemIndex > 0) {
-    let matchingItem = compareData[0].vehicle_specs?.find(
-      (spec) => spec?.specification?.name == "Applications"
-    );
-    if (matchingItem && matchingItem.values?.length > 0) {
-      let _tableData = [];
-      matchingItem.values?.map((x, index) => {
-        _tableData.push({
-          item: "Application " + `${index + 1}`,
-          option_one: x.value,
+  if (isViewPage) {
+    let appItemIndex = specContent.findIndex((x) => x.title == "Applications");
+    if (appItemIndex > 0) {
+      let matchingItem = compareData[0]?.vehicle_specs?.find(
+        (spec) => spec?.specification?.name == "Applications"
+      );
+      if (matchingItem && matchingItem.values?.length > 0) {
+        let _tableData = [];
+        matchingItem.values?.map((x, index) => {
+          _tableData.push({
+            item: "Application " + `${index + 1}`,
+            option_one: x.value,
+          });
         });
-      });
+        specContent[appItemIndex].tableData = _tableData;
+      }
+    }
+  } else if (specContent.findIndex((x) => x.title == "Applications") > 0) {
+    let appItemIndex = specContent.findIndex((x) => x.title == "Applications");
+    let contentItem = specContent[appItemIndex]?.tableData[0];
+    let _tableData = [];
+    const keys = contentItem && Object.keys(contentItem);
+    if (keys?.length > 0) {
+      let itemKey = keys[0];
+      const maxLength = keys.reduce((max, key) => {
+        if (Array.isArray(contentItem[key])) {
+          return Math.max(max, contentItem[key].length);
+        }
+        return max;
+      }, 0);
+      for (let i = 0; i < maxLength; i++) {
+        const entry = {
+          item: `Application ${i + 1}`,
+        };
+
+        // Loop through all keys to add array elements dynamically
+        keys.forEach((key) => {
+          if (Array.isArray(contentItem[key])) {
+            entry[`${key}`] = [contentItem[key][i] || null];
+          }
+        });
+        _tableData.push(entry);
+      }
       specContent[appItemIndex].tableData = _tableData;
     }
   }
