@@ -64,12 +64,34 @@ const SinglePage = () => {
   const vehicleTypeId = vehicleData?.data?.vehicle_type_id;
   const manufacturerId = vehicleData?.data?.manufacturer_id;
 
+  
   const currentVehicleId = router?.query?.id;
+  let gvwValues = vehicleData?.data?.vehicle_specs?.find(x => x.specification.name == "Gross Vehicle Weight (Kg)")?.values?.map((x =>{ return x.value}))
+  let gvwMaxValue = gvwValues && Math.max(...gvwValues);
+  let loadingSpanValues = vehicleData?.data?.vehicle_specs?.find(x => x.specification.name == "Loading Span (ft) \/ Loading Capacity (Cu.M)")?.values?.map((x =>{ return x.value}))
+  let loadingSpanMaxValue = loadingSpanValues &&Math.max(...loadingSpanValues);
+  console.log(gvwValues);
+  console.log(loadingSpanValues);
 
   const similarVehicles = allVehicles?.data?.data
     ?.filter((item) => item?.vehicle_type_id === vehicleTypeId)
-    ?.filter((item) => item?.id !== Number(currentVehicleId));
-
+    ?.filter((item) => item?.manufacturer_id != manufacturerId)
+    ?.filter((item) => item?.id !== Number(currentVehicleId))
+    ?.filter((item) => 
+      item?.vehicle_specs?.some((spec) =>
+        spec.specification.name === "Gross Vehicle Weight (Kg)" &&
+        spec.values?.some((x) => 
+          x.value >= gvwMaxValue - 500 && x.value <= gvwMaxValue + 500
+        )
+      )
+    )?.filter((item) => 
+      item?.vehicle_specs?.some((spec) =>
+        spec.specification.name === "Loading Span (ft) \/ Loading Capacity (Cu.M)" &&
+        spec.values?.some((x) => 
+          x.value >= loadingSpanMaxValue - .5 && x.value <= loadingSpanMaxValue + .5
+        )
+      )
+    );
   const keyspecs = vehicleData?.data?.vehicle_specs?.filter(
     (item) =>
       item?.specification?.is_key_feature &&
