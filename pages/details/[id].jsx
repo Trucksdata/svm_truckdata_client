@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import numeral from "numeral";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import "photoswipe/dist/photoswipe.css";
@@ -64,12 +65,22 @@ const SinglePage = () => {
   const vehicleTypeId = vehicleData?.data?.vehicle_type_id;
   const manufacturerId = vehicleData?.data?.manufacturer_id;
 
-  
   const currentVehicleId = router?.query?.id;
-  let gvwValues = vehicleData?.data?.vehicle_specs?.find(x => x.specification.name == "Gross Vehicle Weight (Kg)")?.values?.map((x =>{ return x.value}))
+  let gvwValues = vehicleData?.data?.vehicle_specs
+    ?.find((x) => x.specification.name == "Gross Vehicle Weight (Kg)")
+    ?.values?.map((x) => {
+      return x.value;
+    });
   let gvwMaxValue = gvwValues && Math.max(...gvwValues);
-  let loadingSpanValues = vehicleData?.data?.vehicle_specs?.find(x => x.specification.name == "Loading Span (ft) \/ Loading Capacity (Cu.M)")?.values?.map((x =>{ return x.value}))
-  let loadingSpanMaxValue = loadingSpanValues &&Math.max(...loadingSpanValues);
+  let loadingSpanValues = vehicleData?.data?.vehicle_specs
+    ?.find(
+      (x) =>
+        x.specification.name == "Loading Span (ft) / Loading Capacity (Cu.M)"
+    )
+    ?.values?.map((x) => {
+      return x.value;
+    });
+  let loadingSpanMaxValue = loadingSpanValues && Math.max(...loadingSpanValues);
   console.log(gvwValues);
   console.log(loadingSpanValues);
 
@@ -77,19 +88,25 @@ const SinglePage = () => {
     ?.filter((item) => item?.vehicle_type_id === vehicleTypeId)
     ?.filter((item) => item?.manufacturer_id != manufacturerId)
     ?.filter((item) => item?.id !== Number(currentVehicleId))
-    ?.filter((item) => 
-      item?.vehicle_specs?.some((spec) =>
-        spec.specification.name === "Gross Vehicle Weight (Kg)" &&
-        spec.values?.some((x) => 
-          x.value >= gvwMaxValue - 500 && x.value <= gvwMaxValue + 500
-        )
+    ?.filter((item) =>
+      item?.vehicle_specs?.some(
+        (spec) =>
+          spec.specification.name === "Gross Vehicle Weight (Kg)" &&
+          spec.values?.some(
+            (x) => x.value >= gvwMaxValue - 500 && x.value <= gvwMaxValue + 500
+          )
       )
-    )?.filter((item) => 
-      item?.vehicle_specs?.some((spec) =>
-        spec.specification.name === "Loading Span (ft) \/ Loading Capacity (Cu.M)" &&
-        spec.values?.some((x) => 
-          x.value >= loadingSpanMaxValue - .5 && x.value <= loadingSpanMaxValue + .5
-        )
+    )
+    ?.filter((item) =>
+      item?.vehicle_specs?.some(
+        (spec) =>
+          spec.specification.name ===
+            "Loading Span (ft) / Loading Capacity (Cu.M)" &&
+          spec.values?.some(
+            (x) =>
+              x.value >= loadingSpanMaxValue - 0.5 &&
+              x.value <= loadingSpanMaxValue + 0.5
+          )
       )
     );
   const keyspecs = vehicleData?.data?.vehicle_specs?.filter(
@@ -232,7 +249,10 @@ const SinglePage = () => {
                         Starting From
                       </div>
                       <div className="text-24 lh-12 fw-600 mt-5">
-                        ₹ {vehicleData?.data["min_price"]?.split(".")[0]}{" "}
+                        ₹
+                        {numeral(
+                          vehicleData?.data["min_price"]?.split(".")[0] / 100000
+                        ).format("0,0.00") + " lakh"}{" "}
                       </div>
                       <div className="text-14 text-light-1 mt-5">
                         Ex-showroom

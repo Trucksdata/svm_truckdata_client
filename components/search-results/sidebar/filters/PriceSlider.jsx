@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import InputRange from "react-input-range";
+import numeral from "numeral";
 
 const PriceSlider = ({ sideParams, setSideParams, label }) => {
   const [price, setPrice] = useState({
@@ -18,8 +19,13 @@ const PriceSlider = ({ sideParams, setSideParams, label }) => {
 
       <div className="d-flex justify-between mb-20">
         <div className="text-15 text-dark-1">
-          <span className="js-lower mx-1">₹{price.value.min}</span>-
-          <span className="js-upper mx-1">₹{price.value.max}</span>
+          <span className="js-lower mx-1">
+            ₹{numeral(price.value.min / 100000).format("0,0.00") + " lakh"}
+          </span>
+          -
+          <span className="js-upper mx-1">
+            ₹{numeral(price.value.max / 100000).format("0,0.00") + " lakh"}
+          </span>
         </div>
       </div>
 

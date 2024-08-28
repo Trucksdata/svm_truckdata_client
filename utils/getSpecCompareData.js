@@ -1,3 +1,4 @@
+import numeral from "numeral";
 function getBasicTableData(datas) {
   const basicTableData = [
     {
@@ -23,21 +24,33 @@ function getBasicTableData(datas) {
       option_one: [
         {
           value: datas?.[0]?.min_price
-            ? `₹${Math.floor(datas?.[0]?.min_price)}`
+            ? `₹${
+                numeral(Math.floor(datas?.[0]?.min_price) / 100000).format(
+                  "0,0.00"
+                ) + " lakh"
+              }`
             : "-",
         },
       ],
       option_two: [
         {
           value: datas?.[1]?.min_price
-            ? `₹${Math.floor(datas?.[1]?.min_price)}`
+            ? `₹${
+                numeral(Math.floor(datas?.[1]?.min_price) / 100000).format(
+                  "0,0.00"
+                ) + " lakh"
+              }`
             : "-",
         },
       ],
       option_three: [
         {
           value: datas?.[2]?.min_price
-            ? `₹${Math.floor(datas?.[2]?.min_price)}`
+            ? `₹${
+                numeral(Math.floor(datas?.[2]?.min_price) / 100000).format(
+                  "0,0.00"
+                ) + " lakh"
+              }`
             : "-",
         },
       ],
@@ -47,21 +60,33 @@ function getBasicTableData(datas) {
       option_one: [
         {
           value: datas?.[0]?.max_price
-            ? `₹${Math.floor(datas?.[0]?.max_price)}`
+            ? `₹${
+                numeral(Math.floor(datas?.[0]?.max_price) / 100000).format(
+                  "0,0.00"
+                ) + " lakh"
+              }`
             : "-",
         },
       ],
       option_two: [
         {
           value: datas?.[1]?.max_price
-            ? `₹${Math.floor(datas?.[1]?.max_price)}`
+            ? `₹${
+                numeral(Math.floor(datas?.[1]?.max_price) / 100000).format(
+                  "0,0.00"
+                ) + " lakh"
+              }`
             : "-",
         },
       ],
       option_three: [
         {
           value: datas?.[2]?.max_price
-            ? `₹${Math.floor(datas?.[2]?.max_price)}`
+            ? `₹${
+                numeral(Math.floor(datas?.[2]?.max_price) / 100000).format(
+                  "0,0.00"
+                ) + " lakh"
+              }`
             : "-",
         },
       ],

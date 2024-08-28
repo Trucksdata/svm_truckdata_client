@@ -2,9 +2,9 @@ import Link from "next/link";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
+import numeral from "numeral";
 
-
-function ModelSlides({ vehicleDetails,navigations}) {
+function ModelSlides({ vehicleDetails, navigations }) {
   return (
     <div>
       <Swiper
@@ -84,7 +84,10 @@ function ModelSlides({ vehicleDetails,navigations}) {
 
                         <div className="truck-card__price-range">
                           <span className="truck-card__price text-blue-1">
-                            ₹ {item?.min_price.split(".")[0]}{" "}
+                            ₹{" "}
+                            {numeral(
+                              item?.min_price.split(".")[0] / 100000
+                            ).format("0,0.00") + " lakh"}{" "}
                           </span>
                           <span className="truck-card__price-label text-13 text-secondary ">
                             Onwards
@@ -105,7 +108,9 @@ function ModelSlides({ vehicleDetails,navigations}) {
       </Swiper>
       <div className="d-flex x-gap-15 items-center justify-center pt-20 sm:pt-20">
         <div className="col-auto">
-          <button className={`d-flex items-center text-24 arrow-left-hover ${navigations?.prev}`}>
+          <button
+            className={`d-flex items-center text-24 arrow-left-hover ${navigations?.prev}`}
+          >
             <i className="icon icon-arrow-left" />
           </button>
         </div>
@@ -115,7 +120,9 @@ function ModelSlides({ vehicleDetails,navigations}) {
         </div> */}
 
         <div className="col-auto">
-          <button className={`d-flex items-center text-24 arrow-right-hover ${navigations?.next}`}>
+          <button
+            className={`d-flex items-center text-24 arrow-right-hover ${navigations?.next}`}
+          >
             <i className="icon icon-arrow-right" />
           </button>
         </div>
