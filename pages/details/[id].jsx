@@ -137,6 +137,8 @@ const SinglePage = () => {
           )
       )
     );
+
+  debugger;
   const loadingSpans =
     vehicleData?.data?.vehicle_specs
       ?.find(
@@ -453,7 +455,7 @@ const SinglePage = () => {
           <div className="container pt-20 pb-20 lg:px-30 sm:px-0">
             <div className="swiper-row">
               <div className="col-auto pt-10 mb-10">
-                <button className="d-flex items-center text-24 arrow-left-hover js-prev">
+                <button className="d-flex items-center text-24 js-prev">
                   <i className="icon icon-arrow-left" />
                 </button>
               </div>
@@ -542,9 +544,9 @@ const SinglePage = () => {
                 })}
               </Swiper>
 
-              <div className="d-flex x-gap-15 items-center justify-center sm:pt-20">
+              <div className="d-flex x-gap-15 items-center justify-center sm">
                 <div className="col-auto">
-                  <button className="d-flex items-center text-24 arrow-right-hover js-next">
+                  <button className="d-flex items-center text-24  js-next">
                     <i className="icon icon-arrow-right" />
                   </button>
                 </div>
@@ -584,7 +586,7 @@ const SinglePage = () => {
             </div>
             <div className="swiper-row">
               <div className="col-auto pt-10 mb-10">
-                <button className="d-flex items-center text-24 arrow-left-hover js-cars-prev">
+                <button className="d-flex items-center text-24  js-cars-prev">
                   <i className="icon icon-arrow-left" />
                 </button>
               </div>
@@ -649,9 +651,9 @@ const SinglePage = () => {
                 })}
               </Swiper>
 
-              <div className="d-flex x-gap-15 items-center justify-center sm:pt-20">
+              <div className="d-flex x-gap-15 items-center justify-center sm">
                 <div className="col-auto">
-                  <button className="d-flex items-center text-24 arrow-right-hover js-cars-next">
+                  <button className="d-flex items-center text-24  js-cars-next">
                     <i className="icon icon-arrow-right" />
                   </button>
                 </div>
