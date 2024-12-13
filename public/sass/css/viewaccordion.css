@@ -1,0 +1,41 @@
+.title_fontsize {
+  font-size: 0.5em;
+}
+
+.view_bordershadow {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.tab_iconsize {
+  width: 2%;
+}
+
+.tab_iconsize {
+  width: 5vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .title_fontsize {
+    font-size: 0.6em;
+  }
+  .tab_iconsize {
+    width: 40%;
+  }
+  .view_tablefontsize {
+    font-size: 0.85em !important;
+  }
+  .table_rowtext {
+    padding-top: 1% !important;
+    padding-bottom: 1% !important;
+    padding-left: 0% !important;
+    width: 600px !important;
+  }
+  .table_rowstext {
+    padding-top: 1% !important;
+    padding-bottom: 1%;
+  }
+  .filter_tabs {
+    padding-left: 60vw;
+    width: auto;
+  }
+}

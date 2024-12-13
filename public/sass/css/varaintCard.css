@@ -1,0 +1,226 @@
+.shadow-common {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  border: 0.25px #ddd;
+}
+
+.truck-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  border: 0.25px #ddd;
+  overflow: hidden;
+  transition: transform 0.2s;
+  margin-bottom: 20px;
+  max-width: 300px;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.brand-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  border: 0.25px #ddd;
+  overflow: hidden;
+  transition: transform 0.2s;
+  width: 200px;
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.truck-card-compare {
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 3px;
+  border: 0.25px #ddd;
+  overflow: hidden;
+  margin-bottom: 30px;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+@media (min-width: 900px) {
+  .truck-card-compare {
+    width: 255px;
+  }
+}
+@media (max-width: 767px) {
+  .truck-card {
+    max-width: 100%; /* Change max-width to 100% on mobile screens */
+  }
+  .brand-card {
+    max-width: 100%; /* Change max-width to 100% on mobile screens */
+  }
+}
+.truck-card:hover {
+  transform: scale(1.03);
+}
+
+.brand-card:hover {
+  transform: scale(1.03);
+}
+
+.truck-card__image {
+  position: relative;
+}
+
+.brand-card__image {
+  position: relative;
+}
+
+.truck-card img {
+  width: 100%;
+  height: auto;
+}
+
+.brand-card img {
+  width: 100%;
+}
+
+.truck-card__content {
+  padding: 15px;
+}
+
+.truck-card__title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-contents {
+  height: 45px;
+  overflow: hidden;
+}
+
+.truck-card__description {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.truck-card__details {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 3px;
+}
+
+.truck-card__location,
+.truck-card__type {
+  margin-right: 10px;
+}
+
+.truck-card__divider {
+  width: 4px;
+  height: 4px;
+  background-color: #777;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.truck-card__price-range {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.truck-card__price-label {
+  margin-right: 5px;
+}
+
+.truck-card__price {
+  color: #ff6600;
+}
+
+.truck-card-zoom {
+  overflow: hidden;
+  margin: 0 auto;
+  height: 150px;
+}
+
+.truck-card-zoom img {
+  width: 100%;
+  transition: 0.5s all ease-in-out;
+  height: 150px;
+}
+
+.truck-card-zoom:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 767px) {
+  .articlePadding {
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+}
+@media (min-width: 768px) {
+  .articlePadding {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+.custom-shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  border: 0.25px #ddd;
+}
+
+@media (max-width: 768px) {
+  .mobileCard .mobileCard {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .mobileCard .mobileCard {
+    display: block;
+  }
+}
+
+.indivitualCardGrid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.search-truck-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  border: 0.25px #ddd;
+  overflow: hidden;
+  transition: transform 0.2s;
+  margin-bottom: 20px;
+  min-width: 300px;
+}
+
+@media (max-width: 767px) {
+  .search-truck-card {
+    max-width: 100%; /* Change max-width to 100% on mobile screens */
+  }
+}
+@media (max-width: 767px) {
+  .hideMobile {
+    display: none;
+  }
+}
+.compare_onwards {
+  margin-top: -5px;
+}
+
+.searchResultContainer {
+  height: 46px;
+  overflow: hidden;
+}
+
+.cardSliderContainer {
+  height: 135px;
+}
+
+.blogHeadingContainer {
+  height: 80px;
+  overflow: hidden;
+}

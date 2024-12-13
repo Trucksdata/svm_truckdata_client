@@ -1,0 +1,52 @@
+.compare-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 250px 10px 250px;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compare-info {
+  font-size: 16px;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.deselect-btn {
+  background-color: #d9d9d9;
+}
+
+.deselect-btn,
+.compare-btn {
+  padding: 10px 15px;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  width: 170px;
+}
+
+@media (max-width: 768px) {
+  .compare-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+  .button-container {
+    width: 100%;
+  }
+  .deselect-btn,
+  .compare-btn {
+    width: 100%;
+  }
+}

@@ -12,15 +12,15 @@ const ButtonFilter = ({
   const [refresh, setRefresh] = useState(0);
 
   const handleRatingClick = (rating) => {
-    const newRating = rating
-    if(activeRating.includes(newRating)) {
+    const newRating = rating;
+    if (activeRating.includes(newRating)) {
       const updatedRatingArray = activeRating.filter((r) => r !== newRating);
-    setActiveRating(updatedRatingArray);
-    setSideParams({
-      ...sideParams,
-      [label]: newRating,
-      [`${label}_spec_id`]: specId,
-    });
+      setActiveRating(updatedRatingArray);
+      setSideParams({
+        ...sideParams,
+        [label]: updatedRatingArray,
+        [`${label}_spec_id`]: updatedRatingArray.length > 0 ? specId : "",
+      });
     } else {
       setActiveRating([...activeRating, rating]);
       setSideParams({
@@ -29,7 +29,7 @@ const ButtonFilter = ({
         [`${label}_spec_id`]: specId,
       });
     }
-    
+
     setRefresh((refresh) => refresh + 1);
   };
 

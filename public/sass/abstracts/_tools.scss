@@ -113,3 +113,53 @@ $aspect-ratios: (
 //     }
 //   }
 // }
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 27px;
+  height: 44px;
+
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.swiper-row {
+  display: flex;
+}
+
+.swiper-row-1 {
+  display: flex;
+}
+
+// .swiper-row-1 .swiper .swiper-wrapper .swiper-slide {
+//   width: auto !important;
+// }
+
+.swiper-row .swiper .swiper-wrapper .swiper-slide {
+  width: auto !important;
+}
+
+.swiper-row .swiper {
+  margin-left: 0px;
+}
+
+.fixed-header {
+  background: #fff;
+  z-index: 9999;
+  padding-top: 0px !important;
+  position: fixed;
+  top: 90px;
+  left: 0px;
+  width: 100%;
+  border-top: 1px solid #d3d3d366;
+}
+
+/* Media query for screens smaller than 990px */
+@media (max-width: 990px) {
+  .fixed-header {
+    top: 80px; /* Change the top value for smaller screens */
+  }
+}

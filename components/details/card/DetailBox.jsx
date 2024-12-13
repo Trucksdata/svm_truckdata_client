@@ -26,6 +26,14 @@ const DetailBlock = ({ data, vehicleDetails }) => {
               )?.values[0]?.value || "-"}
             </label>
           ) : null}
+          {data.key === "maximum_Torque" ? (
+            <label>
+              {vehicleDetails?.vehicle_specs?.find(
+                (x) => x.specification.name == "Maximum Torque"
+              )?.values[0]?.value || "-"}
+            </label>
+          ) : null}
+
           {data.key === "manufacturer_id" ? (
             <label>{vehicleDetails?.manufacturer?.name}</label>
           ) : null}
@@ -34,6 +42,29 @@ const DetailBlock = ({ data, vehicleDetails }) => {
           ) : null}
           {data.key === "category_name" ? (
             <label>{vehicleDetails?.category_name}</label>
+          ) : null}
+          {data.key === "available_spans" ? (
+            <label>
+              {vehicleDetails?.vehicle_specs
+                ?.find(
+                  (x) =>
+                    x.specification.name ==
+                    "Loading Span (ft) / Loading Capacity (Cu.M)"
+                )
+                ?.values.map((x) => x.value + ", ") || "-"}
+            </label>
+          ) : null}
+          {data.key === "gross_vehicle_weight" ? (
+            <label>
+              {vehicleDetails?.vehicle_specs
+                ?.find(
+                  (x) => x.specification.name === "Gross Vehicle Weight (Kg)"
+                )
+                ?.values.reduce(
+                  (max, current) => Math.max(max, current.value),
+                  0
+                ) || "-"}
+            </label>
           ) : null}
         </div>
       </div>
@@ -58,25 +89,34 @@ const data = [
     heading: "Status",
     value: "Active",
   },
+  {
+    heading: "Available Loading Span(ft) / Cu.M",
+    key: "available_spans",
+  },
 ];
 
 const DetailBox = ({ vehicleDetails }) => {
   const details = [
     {
-      heading: "Manufacturer",
-      key: "manufacturer_id",
+      heading: "Status",
+      key: "vehicle_type",
     },
     {
       heading: "Power Source",
       key: "energy_source_id",
     },
     {
-      heading: "Category of Vehicle",
-      key: "category_name",
+      heading: "Power Torque",
+      key: "maximum_Torque",
     },
     {
-      heading: "Status",
-      key: "vehicle_type",
+      heading: "Gross Vehicle Weight",
+      key: "gross_vehicle_weight",
+    },
+
+    {
+      heading: "Available Loading Span(ft) / Cu.M",
+      key: "available_spans",
     },
   ];
   const [click, setClick] = useState(false);
@@ -104,21 +144,6 @@ const DetailBox = ({ vehicleDetails }) => {
           </div>
         ) : null;
       })}
-
-      <div className="col-12">
-        <button
-          onClick={handleClick}
-          className="d-flex button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-yellow-1 text-dark-1"
-        >
-          <div>Download Brochure</div>
-        </button>
-      </div>
-
-      <DownloadForm
-        handleClick={handleClose}
-        click={click}
-        url={vehicleDetails?.brochure}
-      />
     </>
   );
 };

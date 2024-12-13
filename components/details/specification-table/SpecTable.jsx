@@ -11,20 +11,21 @@ const SpecTable = ({ hasVariant, tableData, vehicleSpecs, specId }) => {
 
   function getCounts(data) {
     return data.map((item) => {
-      if (item.option_five !== "-") {
-        return 5;
-      }
-      if (item.option_four !== "-") {
-        return 4;
-      } else if (item.option_three !== "-") {
-        return 3;
-      } else if (item.option_two !== "-") {
-        return 2;
-      } else if (item.option_one !== "-") {
-        return 1;
-      } else {
-        return 0; // Return 0 if none of the options have a value
-      }
+      // if (item.option_five !== "-") {
+      //   return 5;
+      // }
+      // if (item.option_four !== "-") {
+      //   return 4;
+      // } else if (item.option_three !== "-") {
+      //   return 3;
+      // } else if (item.option_two !== "-") {
+      //   return 2;
+      // } else if (item.option_one !== "-") {
+      //   return 1;
+      // } else {
+      //   return 0; // Return 0 if none of the options have a value
+      // }
+      return Object.keys(item).length - 1;
     });
   }
 
@@ -50,22 +51,22 @@ const SpecTable = ({ hasVariant, tableData, vehicleSpecs, specId }) => {
 
         <tbody>
           {tableData?.map((row, index) => {
-            const optionsRow = hasVariant
-              ? [
-                  row?.option_one,
-                  row?.option_two,
-                  row?.option_three,
-                  row?.option_four,
-                  row?.option_five,
-                ]
-                  ?.filter(Boolean)
-                  .filter((item) => item !== undefined && item !== "-")
-              : [row?.option_one]?.filter(Boolean);
+            let keys = Object.keys(row);
+            keys = keys.filter((key) => key !== "item");
+            const optionsRow = keys
+              .map((key) => row[key]) // Map to get the corresponding values from the row object
+              .filter(Boolean) // Filter out falsy values (e.g., undefined, null, empty strings)
+              .filter((item) => item !== undefined && item !== "-"); // Additional filter to exclude undefined and "-"
+
+            // If you want to conditionally include more options based on hasVariant
+            const finalOptionsRow = hasVariant
+              ? optionsRow
+              : [row?.option_1]?.filter(Boolean);
 
             return (
               <tr key={index}>
                 <td>{row.item}</td>
-                {optionsRow.map((item) => {
+                {finalOptionsRow.map((item) => {
                   return Array.isArray(item) ? (
                     item?.map((val) => {
                       return <td key={val}>{val.value ?? "-"}</td>;

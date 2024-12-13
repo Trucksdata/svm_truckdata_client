@@ -136,22 +136,29 @@ function getCollapseTarget(index) {
 }
 
 function itemInFormat(data, isViewPage) {
-  const itemInFormat = data?.map((item) => {
-    const values = item?.values?.map((obj) => {
-      return obj?.value;
+  return data?.map((item) => {
+    // Extract values from the item
+    const values = item?.values?.map((obj) => obj?.value) || [];
+
+    // Create dynamic options object
+    const options = {};
+    values.forEach((value, index) => {
+      options[`option_${index + 1}`] = value || "-";
     });
 
+    // // Conditionally add extra options if isViewPage is true
+    // if (isViewPage) {
+    //   for (let i = values.length; i < 5; i++) {
+    //     options[`option_${i + 1}`] = "-";
+    //   }
+    // }
+
+    // Return the final formatted object
     return {
       item: item?.item,
-      option_one: values?.[0] || "-",
-      option_two: values?.[1] || "-",
-      option_three: values?.[2] || "-",
-      ...(isViewPage && { option_four: values?.[3] || "-" }),
-      ...(isViewPage && { option_five: values?.[4] || "-" }),
+      ...options,
     };
   });
-
-  return itemInFormat;
 }
 
 function getTableData(id, specifications, compareData, isViewPage) {
@@ -270,7 +277,7 @@ export const getSpecCompareData = (compareData, specCategory, isViewPage) => {
         matchingItem.values?.map((x, index) => {
           _tableData.push({
             item: "Application " + `${index + 1}`,
-            option_one: x.value,
+            option_1: x.value,
           });
         });
         specContent[appItemIndex].tableData = _tableData;
