@@ -590,7 +590,7 @@ const SinglePage = () => {
                   <i className="icon icon-arrow-left" />
                 </button>
               </div>
-              <span className="pt-5 pl-7"> Varients:</span>
+              <span className="pt-5 pl-7"> Variants:</span>
               <Swiper
                 //width={}
                 modules={[Navigation, Pagination]}
@@ -634,7 +634,8 @@ const SinglePage = () => {
                           setShowingOption(filter.option);
                         }}
                         //key={`refresh_${refresh}`}
-                        className={`button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 `}
+                        className={showingOption == filter.option ?"button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 active" 
+                            :"button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20"}
                         //  ${
                         //   activeRating?.includes(filter.value)
                         //     ? "active"
