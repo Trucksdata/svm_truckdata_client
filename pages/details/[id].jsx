@@ -57,6 +57,8 @@ const SinglePage = () => {
   const [expand, setExpand] = useState(false);
   const [click, setClick] = useState(false);
   const [showingOption, setShowingOption] = useState("option_1");
+  const isClient = typeof window !== "undefined";
+  const hasData = isClient ? localStorage.getItem("hasUserData") : false;
 
   const similarNavigations = {
     prev: "similar-prev-navigation",
@@ -182,6 +184,7 @@ const SinglePage = () => {
 
   function handleClick() {
     if (hasData) {
+      debugger;
       return downloadFile(vehicleDetails?.brochure, handleClose);
     }
     setClick(!click);
@@ -634,8 +637,11 @@ const SinglePage = () => {
                           setShowingOption(filter.option);
                         }}
                         //key={`refresh_${refresh}`}
-                        className={showingOption == filter.option ?"button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 active" 
-                            :"button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20"}
+                        className={
+                          showingOption == filter.option
+                            ? "button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 active"
+                            : "button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20"
+                        }
                         //  ${
                         //   activeRating?.includes(filter.value)
                         //     ? "active"
@@ -766,11 +772,13 @@ const SinglePage = () => {
                     <div>Download Brochure</div>
                   </button>
                 </div>
-                <DownloadForm
-                  handleClick={handleClose}
-                  click={click}
-                  url={vehicleDetails?.brochure}
-                />
+                {vehicleData?.data?.brochure && (
+                  <DownloadForm
+                    handleClick={handleClose}
+                    click={click}
+                    url={vehicleData?.data?.brochure}
+                  />
+                )}
               </div>
             </div>
           </div>

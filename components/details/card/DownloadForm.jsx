@@ -12,7 +12,6 @@ const DownloadForm = ({ handleClick, click, url }) => {
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
 
-
   const handleOptionClick = (item) => {
     setSearchValue(item.state);
     setSelectedItem(item);
@@ -185,11 +184,10 @@ const DownloadForm = ({ handleClick, click, url }) => {
                 <div className="px-20 py-20 sm:px-0 sm:py-15 rounded-4">
                   <ul className="y-gap-5 js-results">
                     {selectedItem?.districts?.map((item) => {
-
                       return (
                         <li
                           className={`-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option mb-1 ${
-                            selectedDistrict&& selectedDistrict === item
+                            selectedDistrict && selectedDistrict === item
                               ? "active"
                               : ""
                           }`}
