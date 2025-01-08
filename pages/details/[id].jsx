@@ -185,7 +185,7 @@ const SinglePage = () => {
   function handleClick() {
     if (hasData) {
       debugger;
-      return downloadFile(vehicleDetails?.brochure, handleClose);
+      return downloadFile(vehicleData?.data?.brochure, handleClose);
     }
     setClick(!click);
   }
@@ -772,12 +772,13 @@ const SinglePage = () => {
                     <div>Download Brochure</div>
                   </button>
                 </div>
-
-                <DownloadForm
-                  handleClick={handleClose}
-                  click={click}
-                  url={vehicleData?.data?.brochure}
-                />
+                {vehicleData?.data?.brochure && (
+                  <DownloadForm
+                    handleClick={handleClose}
+                    click={click}
+                    url={vehicleData?.data?.brochure}
+                  />
+                )}
               </div>
             </div>
           </div>
