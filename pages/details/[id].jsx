@@ -772,13 +772,12 @@ const SinglePage = () => {
                     <div>Download Brochure</div>
                   </button>
                 </div>
-                {vehicleData?.data?.brochure && (
-                  <DownloadForm
-                    handleClick={handleClose}
-                    click={click}
-                    url={vehicleData?.data?.brochure}
-                  />
-                )}
+
+                <DownloadForm
+                  handleClick={handleClose}
+                  click={click}
+                  url={vehicleData?.data?.brochure}
+                />
               </div>
             </div>
           </div>
