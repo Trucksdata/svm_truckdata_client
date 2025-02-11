@@ -52,11 +52,18 @@ const SingleBrand = () => {
     (item) => item.is_upcoming === 1
   );
 
-  const popularbrandNavigations = {prev:"popularbrand-prev-navigation",next:"popularbrand-next-navigation"}
-  const latestNavigations = {prev:"latest-prev-navigation",next:"latest-next-navigation"}
-  const brandUpcoming = {prev:"brand-upcoming-prev-navigation",next:"brand-upcoming-next-navigation"}
-
-
+  const popularbrandNavigations = {
+    prev: "popularbrand-prev-navigation",
+    next: "popularbrand-next-navigation",
+  };
+  const latestNavigations = {
+    prev: "latest-prev-navigation",
+    next: "latest-next-navigation",
+  };
+  const brandUpcoming = {
+    prev: "brand-upcoming-prev-navigation",
+    next: "brand-upcoming-next-navigation",
+  };
 
   if (isLoading) {
     return (
@@ -126,7 +133,10 @@ const SingleBrand = () => {
 
           <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
             {/* <BrandModels vehicleDetails={filteredVehicles} flag="is_popular" /> */}
-            <ModelSlides vehicleDetails={mostPopularVehicles} navigations={popularbrandNavigations}/>
+            <ModelSlides
+              vehicleDetails={mostPopularVehicles}
+              navigations={popularbrandNavigations}
+            />
           </div>
         </div>
       </section>
@@ -144,7 +154,10 @@ const SingleBrand = () => {
           </div>
 
           <div className="row pt-40 sm:pt-20 item_gap-x30">
-            <ModelSlides vehicleDetails={latestVehicles} navigations={latestNavigations}/>
+            <ModelSlides
+              vehicleDetails={latestVehicles}
+              navigations={latestNavigations}
+            />
           </div>
         </div>
       </section>
@@ -163,7 +176,10 @@ const SingleBrand = () => {
 
           <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
             {/* <BrandModels vehicleDetails={filteredVehicles} flag="is_upcoming" /> */}
-            <ModelSlides vehicleDetails={upcomingVehicles} navigations={brandUpcoming}/>
+            <ModelSlides
+              vehicleDetails={upcomingVehicles}
+              navigations={brandUpcoming}
+            />
           </div>
         </div>
       </section>
@@ -192,7 +208,7 @@ const SingleBrand = () => {
 
       <CallToActions />
 
-      <Footer className="text-dark" type={'white'} />
+      <Footer className="text-dark" type={"white"} />
     </>
   );
 };

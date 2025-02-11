@@ -10,7 +10,6 @@ const PopularTrucks = () => {
   return (
     <>
       <Swiper
-      
         spaceBetween={30}
         modules={[Navigation, Pagination]}
         navigation={{
@@ -39,7 +38,7 @@ const PopularTrucks = () => {
         }}
       >
         {vehicleDetails?.data["data"]
-          ?.slice(0, 8)
+          //?.slice(0, 8)
           ?.reverse()
           .map((item, i) =>
             item?.is_popular === 1 ? (
@@ -63,7 +62,7 @@ const PopularTrucks = () => {
                         pagination={{
                           clickable: true,
                         }}
-                        navigation={true}
+                        navigation={false}
                       >
                         <SwiperSlide>
                           <div className="truck-card-zoom">
@@ -87,7 +86,9 @@ const PopularTrucks = () => {
                             {/* <div className="truck-card__divider" /> */}
                           </div>
                           <div className="card-contents">
-                          <h4 className="truck-card__title ">{item?.title}</h4>
+                            <h4 className="truck-card__title ">
+                              {item?.title}
+                            </h4>
                           </div>
 
                           <div className="truck-card__price-range">

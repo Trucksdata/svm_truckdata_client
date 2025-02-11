@@ -36,7 +36,7 @@ function ModelCompareSlides({ vehicleDetails, navigations }) {
         }}
       >
         {vehicleDetails
-          ?.slice(0, 8)
+          //?.slice(0, 8)
           ?.reverse()
           .map((item, i) => (
             <SwiperSlide key={item.id}>

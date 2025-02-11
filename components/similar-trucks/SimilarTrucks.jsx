@@ -6,14 +6,8 @@ import { useRouter } from "next/router";
 import useViewVehicle from "../../services/useViewVehicle";
 import useVehicleTypes from "../../services/useVehicleTypes";
 
-
-
-const SimilarTrucks = ({similarVehicles}) => {
-
-
-
+const SimilarTrucks = ({ similarVehicles }) => {
   return (
-    
     <>
       <Swiper
         spaceBetween={30}
@@ -63,9 +57,9 @@ const SimilarTrucks = ({similarVehicles}) => {
                       className="mySwiper"
                       modules={[Pagination, Navigation]}
                       pagination={{
-                        clickable: true,
+                        clickable: false,
                       }}
-                      navigation={true}
+                      navigation={false}
                     >
                       <SwiperSlide>
                         <div className="truck-card-zoom">
@@ -92,7 +86,7 @@ const SimilarTrucks = ({similarVehicles}) => {
 
                         <div className="truck-card__price-range">
                           <span className="truck-card__price text-blue-1">
-                          ₹ {item?.min_price.split('.')[0]}{" "}
+                            ₹ {item?.min_price.split(".")[0]}{" "}
                           </span>
                           <span className="truck-card__price-label text-13 text-secondary ">
                             Onwards
@@ -111,7 +105,6 @@ const SimilarTrucks = ({similarVehicles}) => {
             </SwiperSlide>
           ) : null
         )}
-        
       </Swiper>
 
       <div className="d-flex x-gap-15 items-center justify-center pt-20 sm:pt-20">

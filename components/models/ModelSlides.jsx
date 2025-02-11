@@ -36,7 +36,7 @@ function ModelSlides({ vehicleDetails, navigations }) {
         }}
       >
         {vehicleDetails
-          ?.slice(0, 8)
+          //?.slice(0, 8)
           ?.reverse()
           .map((item, i) => (
             <SwiperSlide key={item.id}>
@@ -59,7 +59,7 @@ function ModelSlides({ vehicleDetails, navigations }) {
                       pagination={{
                         clickable: true,
                       }}
-                      navigation={true}
+                      navigation={false}
                     >
                       <SwiperSlide>
                         <div className="truck-card-zoom">

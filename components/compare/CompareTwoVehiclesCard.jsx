@@ -5,8 +5,6 @@ import trucksData from "../../data/upcoming-trucks";
 import CompareTwoVehicleBox from "./CompareTwoVehicleBox";
 
 const CompareTwoVehiclesCard = ({ comparisonData }) => {
- 
-
   return (
     <>
       <Swiper
@@ -37,11 +35,13 @@ const CompareTwoVehiclesCard = ({ comparisonData }) => {
           },
         }}
       >
-        {comparisonData?.slice(0, 8).map((item) => (
-          <SwiperSlide key={item.id}>
-            <CompareTwoVehicleBox item={item} />
-          </SwiperSlide>
-        ))}
+        {comparisonData
+          //.slice(0, 8)
+          ?.map((item) => (
+            <SwiperSlide key={item.id}>
+              <CompareTwoVehicleBox item={item} />
+            </SwiperSlide>
+          ))}
       </Swiper>
 
       <div className="d-flex x-gap-15 items-center justify-center pt-20 sm:pt-20">

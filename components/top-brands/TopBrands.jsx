@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import useVehicleTypes from "../../services/useVehicleTypes";
 
 const TopBrands = () => {
-  const topBrandFilterId = useSelector(
-    (store) => store.topfilter.brands.id
-  );
+  const topBrandFilterId = useSelector((store) => store.topfilter.brands.id);
 
   const { data: vehicle } = useVehicleTypes();
 
@@ -48,7 +46,7 @@ const TopBrands = () => {
           slidesToShow: 1,
           centerMode: false,
           variableWidth: true,
-          infinite:false
+          infinite: false,
         },
       },
     ],
@@ -56,30 +54,31 @@ const TopBrands = () => {
 
   return (
     <Slider {...settings}>
-      {brandDetails?.manufacturers?.slice(0, 8).map((item, i) => (
-        <div
-          className="tobrandCard col-xl-2  col-lg-3 col-sm-8 border-2 truck-card p-2 rounded-3 d-flex justify-content-center"
-          key={i}
-          data-aos="fade"
-          data-aos-delay={i * 100}
-        >
-
-          <Link
-            href={`/brands/${item.id}?brand_name=${item.slug}`}
-            className="citiesCard -type-3 d-block text-center "
+      {brandDetails?.manufacturers
+        //?.slice(0, 8)
+        ?.map((item, i) => (
+          <div
+            className="tobrandCard col-xl-2  col-lg-3 col-sm-8 border-2 truck-card p-2 rounded-3 d-flex justify-content-center"
+            key={i}
+            data-aos="fade"
+            data-aos-delay={i * 100}
           >
-            <div className="citiesCard__image size-120 rounded-full mx-auto brandCardImage">
-              <img
-                className="object-cover js-lazy"
-                src={item?.logo[0]?.thumbnail}
-                alt="image"
-                width={100}
-                height={100}
-              />
-            </div>
-          </Link>
-        </div>
-      ))}
+            <Link
+              href={`/brands/${item.id}?brand_name=${item.slug}`}
+              className="citiesCard -type-3 d-block text-center "
+            >
+              <div className="citiesCard__image size-120 rounded-full mx-auto brandCardImage">
+                <img
+                  className="object-cover js-lazy"
+                  src={item?.logo[0]?.thumbnail}
+                  alt="image"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </Link>
+          </div>
+        ))}
     </Slider>
 
     // <>
