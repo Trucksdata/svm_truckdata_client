@@ -177,19 +177,19 @@ function getTableData(id, specifications, compareData, isViewPage) {
             );
 
             if (existingItem) {
-              if (!existingItem.option_one && index === 0) {
-                existingItem.option_one = spec?.values ?? "-";
-              } else if (!existingItem.option_two && index === 1) {
-                existingItem.option_two = spec?.values ?? "-";
-              } else if (!existingItem.option_three && index === 2) {
-                existingItem.option_three = spec?.values ?? "-";
+              if (!existingItem.option_1 && index === 0) {
+                existingItem.option_1 = spec?.values ?? "-";
+              } else if (!existingItem.option_2 && index === 1) {
+                existingItem.option_2 = spec?.values ?? "-";
+              } else if (!existingItem.option_3 && index === 2) {
+                existingItem.option_3 = spec?.values ?? "-";
               }
             } else {
               const newItem = {
                 item: matchingItem.item,
-                ...(index === 0 && { option_one: spec?.values ?? "-" }),
-                ...(index === 1 && { option_two: spec?.values ?? "-" }),
-                ...(index === 2 && { option_three: spec?.values ?? "-" }),
+                ...(index === 0 && { option_1: spec?.values ?? "-" }),
+                ...(index === 1 && { option_2: spec?.values ?? "-" }),
+                ...(index === 2 && { option_3: spec?.values ?? "-" }),
               };
               output.push(newItem);
             }
