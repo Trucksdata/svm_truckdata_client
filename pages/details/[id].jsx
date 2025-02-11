@@ -140,7 +140,6 @@ const SinglePage = () => {
       )
     );
 
-  debugger;
   const loadingSpans =
     vehicleData?.data?.vehicle_specs
       ?.find(
@@ -184,7 +183,6 @@ const SinglePage = () => {
 
   function handleClick() {
     if (hasData) {
-      debugger;
       return downloadFile(vehicleData?.data?.brochure, handleClose);
     }
     setClick(!click);

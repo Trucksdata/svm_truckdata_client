@@ -3,25 +3,25 @@ function getBasicTableData(datas) {
   const basicTableData = [
     {
       item: "Manufacturer Name",
-      option_one: [{ value: datas?.[0]?.manufacturer?.name ?? "-" }] ?? "-",
-      option_two: [{ value: datas?.[1]?.manufacturer?.name ?? "-" }] ?? "-",
-      option_three: [{ value: datas?.[2]?.manufacturer?.name ?? "-" }] ?? "-",
+      option_1: [{ value: datas?.[0]?.manufacturer?.name ?? "-" }] ?? "-",
+      option_2: [{ value: datas?.[1]?.manufacturer?.name ?? "-" }] ?? "-",
+      option_3: [{ value: datas?.[2]?.manufacturer?.name ?? "-" }] ?? "-",
     },
     {
       item: "Power Source",
-      option_one: [{ value: datas?.[0]?.energy_source?.name ?? "-" }],
-      option_two: [{ value: datas?.[1]?.energy_source?.name ?? "-" }],
-      option_three: [{ value: datas?.[2]?.energy_source?.name ?? "-" }],
+      option_1: [{ value: datas?.[0]?.energy_source?.name ?? "-" }],
+      option_2: [{ value: datas?.[1]?.energy_source?.name ?? "-" }],
+      option_3: [{ value: datas?.[2]?.energy_source?.name ?? "-" }],
     },
     {
       item: "Category",
-      option_one: [{ value: datas?.[0]?.category_name ?? "-" }],
-      option_two: [{ value: datas?.[1]?.category_name ?? "-" }],
-      option_three: [{ value: datas?.[2]?.category_name ?? "-" }],
+      option_1: [{ value: datas?.[0]?.category_name ?? "-" }],
+      option_2: [{ value: datas?.[1]?.category_name ?? "-" }],
+      option_3: [{ value: datas?.[2]?.category_name ?? "-" }],
     },
     {
       item: "Min-Price",
-      option_one: [
+      option_1: [
         {
           value: datas?.[0]?.min_price
             ? `₹${
@@ -32,7 +32,7 @@ function getBasicTableData(datas) {
             : "-",
         },
       ],
-      option_two: [
+      option_2: [
         {
           value: datas?.[1]?.min_price
             ? `₹${
@@ -43,7 +43,7 @@ function getBasicTableData(datas) {
             : "-",
         },
       ],
-      option_three: [
+      option_3: [
         {
           value: datas?.[2]?.min_price
             ? `₹${
@@ -57,7 +57,7 @@ function getBasicTableData(datas) {
     },
     {
       item: "Max-Price",
-      option_one: [
+      option_1: [
         {
           value: datas?.[0]?.max_price
             ? `₹${
@@ -68,7 +68,7 @@ function getBasicTableData(datas) {
             : "-",
         },
       ],
-      option_two: [
+      option_2: [
         {
           value: datas?.[1]?.max_price
             ? `₹${
@@ -79,7 +79,7 @@ function getBasicTableData(datas) {
             : "-",
         },
       ],
-      option_three: [
+      option_3: [
         {
           value: datas?.[2]?.max_price
             ? `₹${

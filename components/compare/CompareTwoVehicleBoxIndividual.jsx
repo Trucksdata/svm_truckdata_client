@@ -15,7 +15,6 @@ const CompareTwoVehicleBoxIndividual = ({ item }) => {
   function handleRoute() {
     router.push(routeToRedirect);
   }
-  debugger;
 
   return (
     <div className="truck-card-compare">

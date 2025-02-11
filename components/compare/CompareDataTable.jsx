@@ -1,7 +1,6 @@
 import React from "react";
 
 const renderOptionValues = (rowData, optionKey) => {
-  debugger;
   const optionValues = Array.isArray(rowData[optionKey])
     ? rowData[optionKey].map((item) => item?.value)
     : [];
